@@ -10,7 +10,7 @@ class Program
     {
        
         static void Main(string[] args)
-{
+        {
             Type personType = typeof(Person);
             PropertyInfo[] properties = personType.GetProperties
                 (BindingFlags.Public | BindingFlags.Instance);
