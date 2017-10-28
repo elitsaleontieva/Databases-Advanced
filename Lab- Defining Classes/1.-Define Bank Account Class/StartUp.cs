@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication85
-{
-    class Program
+  class Program
     {
         static void Main(string[] args)
         {
@@ -18,4 +16,3 @@ namespace ConsoleApplication85
             Console.WriteLine($"Account {acc.ID}, balance {acc.Balance}");
         }
     }
-}
