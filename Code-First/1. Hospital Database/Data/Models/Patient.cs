@@ -6,8 +6,6 @@ namespace P01_HospitalDatabase.Data.Models
 {
     public class Patient
     {
-        //инициализираме колекциите в конструктор след като сме направили всичко
-
         public Patient()
         {
             Prescriptions = new List<PatientMedicament>();
