@@ -10,7 +10,7 @@
     {
         public Store()
         {
-            Sales = new List<Sale>(); //this.Sales = new HashSet<Sale>();
+            Sales = new List<Sale>(); 
         }
 
         public int StoreId { get; set; }
