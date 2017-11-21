@@ -6,10 +6,6 @@ namespace P01_HospitalDatabase.Data.Models
 {
     public class PatientMedicament
     {
-        //mapping class
-
-            
-
         public int PatientId { get; set; }
         public Patient Patient { get; set; }
 
