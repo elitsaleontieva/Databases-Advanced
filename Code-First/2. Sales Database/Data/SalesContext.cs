@@ -47,9 +47,6 @@ namespace P03_SalesDatabase.Data
                 .IsUnicode(true)
                 .HasMaxLength(50);
 
-                //price
-                //sales
-
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -66,9 +63,6 @@ namespace P03_SalesDatabase.Data
                 .IsUnicode(false)
                 .HasMaxLength(80);
 
-                //sales
-
-
             });
 
             modelBuilder.Entity<Store>(entity =>
@@ -81,8 +75,6 @@ namespace P03_SalesDatabase.Data
                 .IsUnicode(true)
                 .HasMaxLength(80);
 
-
-                //sales
 
             });
 
@@ -103,11 +95,7 @@ namespace P03_SalesDatabase.Data
                 entity.HasOne(e => e.Store)
                     .WithMany(s => s.Sales)
                     .HasForeignKey(e => e.StoreId);
-                //	Product
-                //	Customer
-                //	Store
-
-
+              
             });
 
         }
