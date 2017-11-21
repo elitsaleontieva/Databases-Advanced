@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using P01_HospitalDatabase.Data.Models;
 
-namespace P01_HospitalDatabase.Data //!!! add .Data
+namespace P01_HospitalDatabase.Data
 {
     public class HospitalContext : DbContext
     {
@@ -19,7 +19,6 @@ namespace P01_HospitalDatabase.Data //!!! add .Data
 
         }
 
-        //ако класовете са в друг проект трябва да ги направим public
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Medicament> Medicaments { get; set; }
         public DbSet<Diagnose> Diagnoses { get; set; }
@@ -38,36 +37,28 @@ namespace P01_HospitalDatabase.Data //!!! add .Data
         {
             modelBuilder.Entity<Patient>(entity => 
             {
-                //не са задължителни!!! 
-
-                //	PatientId
                 entity.HasKey(e => e.PatientId);
 
-                //FirstName (up to 50 characters, unicode)
                 entity.Property(e => e.FirstName)
-                .IsRequired(true) //по default е true
-                .IsUnicode(true) //ако искаме да е Unicode - true; ако не искаме- false
+                .IsRequired(true) 
+                .IsUnicode(true) 
                 .HasMaxLength(50);
-
-                //	LastName (up to 50 characters, unicode)
+                
                 entity.Property(e => e.LastName)
                 .IsRequired(true)
                 .IsUnicode(true)
                 .HasMaxLength(50);
 
-                //Address(up to 250 characters, unicode)
                 entity.Property(e => e.Adress)
                 .IsRequired(true)
                 .IsUnicode(true)
                 .HasMaxLength(250);
 
-                //Email (up to 80 characters, not unicode)
                 entity.Property(e => e.Email)
                 .IsRequired(true)
                 .IsUnicode(false)
                 .HasMaxLength(80);
 
-                //	HasInsurance
                 entity.Property(e => e.HasInsurance)
                 .HasDefaultValue(true);
              
@@ -77,8 +68,6 @@ namespace P01_HospitalDatabase.Data //!!! add .Data
 
             modelBuilder.Entity<Visitation>(entity =>
             {
-                //не са задължителни!!! 
-
                 
                 entity.HasKey(e => e.VisitationId);
 
@@ -93,12 +82,10 @@ namespace P01_HospitalDatabase.Data //!!! add .Data
               .IsUnicode(true)
               .HasMaxLength(255);
 
-                //мапване
                 entity.HasOne(e => e.Patient)
-                .WithMany(p => p.Visitations) //много визитации
+                .WithMany(p => p.Visitations)
                 .HasForeignKey(e => e.PatientId)
-                .HasConstraintName("FK_Visitation_Patient"); //не е задължително
-                //fk patientid
+                .HasConstraintName("FK_Visitation_Patient"); 
                 
 
             });
@@ -118,9 +105,9 @@ namespace P01_HospitalDatabase.Data //!!! add .Data
            .IsUnicode(true)
            .HasMaxLength(50);
 
-                entity.HasOne(e => e.Patient)
-                .WithMany(p => p.Diagnoses) //много визитации
-                .HasForeignKey(e => e.PatientId); 
+            entity.HasOne(e => e.Patient)
+            .WithMany(p => p.Diagnoses) 
+            .HasForeignKey(e => e.PatientId); 
             });
 
             modelBuilder.Entity<Medicament>(entity =>
@@ -132,12 +119,10 @@ namespace P01_HospitalDatabase.Data //!!! add .Data
                .IsUnicode(true)
                .HasMaxLength(50);
 
-                //връзката я правим с маппинг таблицата -patientmedicaments
             });
 
             modelBuilder.Entity<PatientMedicament>(entity =>
             {
-                //composite key
                 entity.HasKey(e => new { e.PatientId, e.MedicamentId});
 
                 entity.HasOne(e => e.Medicament)
@@ -148,7 +133,6 @@ namespace P01_HospitalDatabase.Data //!!! add .Data
                 .WithMany(e => e.Prescriptions)
                 .HasForeignKey(e=>e.PatientId);
 
-                //връзката я правим с маппинг таблицата -patientmedicaments
             });
         }
     }
