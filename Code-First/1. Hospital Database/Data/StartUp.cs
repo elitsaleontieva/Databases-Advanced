@@ -1,6 +1,6 @@
 
 
-namespace P01_HospitalDatabase //CHANGE THE NAMESPACE FROM HospitalStartUp
+namespace P01_HospitalDatabase
 {
     using System;
     using P01_HospitalDatabase.Data;
