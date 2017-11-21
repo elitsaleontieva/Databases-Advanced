@@ -1,0 +1,21 @@
+﻿
+namespace P01_StudentSystem.Data.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+
+    public class Resource
+    {
+        
+        public int ResourceId { get; set; }
+        public string Name { get; set; }
+        public string Url { get; set; }
+        public PossibleResourceTypes ResourceType { get; set; }
+
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
+
+    }
+}
