@@ -1,4 +1,4 @@
-amespace BookShop
+namespace BookShop
 {
     using BookShop.Data;
     using BookShop.Initializer;
