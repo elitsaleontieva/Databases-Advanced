@@ -13,6 +13,8 @@ namespace BookShop
     using System.Threading;
 
 
+
+
     public class StartUp
     {
         static void Main(string[] args)
@@ -20,7 +22,7 @@ namespace BookShop
             using (var db = new BookShopContext())
             {
                DbInitializer.ResetDatabase(db);
-                var input = Console.ReadLine().ToLower();
+                var input = Console.ReadLine();
                 var result = GetBookTitlesContaining(db, input);
                 Console.WriteLine(result);
             }
@@ -28,10 +30,11 @@ namespace BookShop
 
         public static string GetBookTitlesContaining(BookShopContext context, string input)
         {
-            var resultLast = context.Books.Where(r => r.Title.Contains(input.ToLower()))
-                                      .OrderBy(n => n.Title)
-                                      .Select(a => a.Title)
-                                      .ToList();
+            var resultLast = context.Books
+                .Where(b => b.Title.ToLower().Contains(input.ToLower()))
+		.OrderBy(n => n.Title)
+                .Select(s => s.Title)
+                .ToList();
 
 
 
